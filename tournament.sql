@@ -1,10 +1,4 @@
 -- Table definitions for the tournament project.
---
--- Put your SQL 'create table' statements in this file; also 'create view'
--- statements if you choose to use it.
---
--- You can write comments in this file by starting them with two dashes, like
--- these lines here.
 
 
 CREATE TABLE players (
@@ -18,6 +12,7 @@ CREATE TABLE matchup (
     matchid serial PRIMARY KEY
 );
 
+-- summarize total wins and total matches played for each player
 CREATE VIEW standings AS
     SELECT
         players.id as playerid,
@@ -30,6 +25,8 @@ CREATE VIEW standings AS
     GROUP BY players.id
     ORDER BY wins DESC;
 
+
+-- matchups for next round
 CREATE VIEW nextround AS
     SELECT
         a.playerid as id1,
